@@ -1,0 +1,83 @@
+# Point View UI Transfer Plan
+
+## Purpose
+
+This file defines the next transfer phase for Point View.
+
+The core V1 documentation and logic foundation are now on desktop.
+
+The next phase is UI transfer.
+
+This file exists so UI work stays consistent with the locked V1 model instead of drifting into a different app shape.
+
+## Current Rule
+
+No UI file should be transferred casually.
+
+Every UI piece should reflect the already locked V1 structure in:
+
+- `docs/current-state.md`
+- `docs/code-map.md`
+- `docs/v1-reference-run.md`
+- `docs/source-transfer-status.md`
+
+## Current UI Direction to Preserve
+
+Any transferred UI should support the following Point View V1 behaviors:
+
+- the user can load or view a source image
+- the user can select a point
+- the user can choose a ray angle
+- the user can run a single ray cast
+- the user can inspect the result visibly
+- the user can inspect active parameters visibly
+- the user can inspect stop type visibly
+- the user can inspect sampled strip behavior visibly
+
+## UI Pieces Still Needed
+
+The main V1 interface pieces still to be transferred are:
+
+1. app shell
+2. image display area
+3. point selection behavior
+4. angle control
+5. parameter controls
+6. ray readout panel
+7. raw strip visualization
+8. perception logic strip visualization
+9. test control section
+10. image loading flow
+
+## Recommended UI Transfer Order
+
+The safest order is:
+
+1. app shell scaffold
+2. image loading and source image display
+3. point state and point click handling
+4. angle state and angle slider
+5. parameter state using canonical V1 defaults
+6. ray cast trigger using transferred core logic
+7. readout panel wiring
+8. raw strip rendering
+9. logic strip rendering
+10. test controls and preset handling
+
+## Important Rule
+
+UI transfer should not redefine core logic.
+
+If a UI file needs a helper that changes perception behavior, that helper should be treated as logic and reviewed against the current V1 docs before being added.
+
+## First UI Goal
+
+The first UI transfer should only establish a stable app shell and import path for the current V1 module set.
+
+It should not yet attempt full interaction.
+
+## Summary
+
+The next Point View phase is controlled UI transfer.
+
+The goal is to wrap the already locked V1 logic in a visible interface without changing what the current model means.

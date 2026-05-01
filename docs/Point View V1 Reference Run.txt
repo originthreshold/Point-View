@@ -1,0 +1,84 @@
+# Point View V1 Reference Run
+
+## Purpose
+
+This file locks one canonical reference run for Point View V1.
+
+Its purpose is to preserve a concrete example that matches the current documented model, parameter defaults, and observed behavior.
+
+This file should be used as a consistency anchor when transferring later code or UI pieces.
+
+## Reference Run Name
+
+Grayscale accumulated drift anchor run
+
+## Reference Parameters
+
+```text
+step_size = 1
+noise_floor = 2
+cluster_ceiling = 30
+boundary_threshold = 60
+origin_threshold = 130
+drift_threshold = 60
+soft_weight = 0.5
+```
+
+## Reference Input
+
+```text
+Point: (16, 573)
+Angle: 0°
+```
+
+## Reference Output
+
+```text
+Model Name: Point View V1
+Point: (16, 573)
+Angle: 0°
+Start Color: rgb(235, 235, 235)
+Hit Point: (400, 573)
+Hit Color: rgb(191, 191, 191)
+Steps: 384
+Travel Distance: 384.00
+Local Change: 38.11
+Origin Drift: 76.21
+Accumulated Drift: 76.21
+Hit Type: accumulated_drift
+Status: ray cast complete
+Raw Strip Samples: 385
+Raw Strip Hit Index: 384
+Logic Strip Samples: 385
+Logic Strip Hit Index: 384
+```
+
+## Why This Run Matters
+
+This run is one of the clearest anchor cases in the current Point View V1 project state.
+
+It shows that the system can stop on `accumulated_drift` rather than only on origin separation or hard rupture.
+
+That makes the behavior more plausible for gradual grayscale travel.
+
+## What This Run Demonstrates
+
+1. small variation is not treated as immediate rupture
+2. gradual travel can build meaningful drift
+3. the journey can matter, not just final distance from the origin
+4. stop type is a critical part of the output
+5. the current default parameter set has a concrete behavioral reference
+
+## Consistency Rule
+
+Future transferred code, UI readouts, or test harnesses should not silently contradict this reference run.
+
+If later implementation differs, one of the following must happen deliberately:
+
+- the implementation is corrected to match this anchor
+- the docs are revised with a clearly stated reason
+- a new reference run is added and explicitly promoted
+
+## Summary
+
+This file preserves one canonical V1 run so the Point View desktop project has a concrete behavioral checkpoint, not just abstract documentation.
